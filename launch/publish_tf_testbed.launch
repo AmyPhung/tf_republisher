@@ -1,0 +1,24 @@
+<launch>
+  <node pkg="tf_republisher" type="static_tf_republisher.py"
+    name="kinect_rgb_tf_broadcaster" output="screen" respawn="true">
+    <param name="source_frame" type="string" value="Base"/>
+    <param name="target_frame" type="string" value="kinect2_rgb_optical_frame"/>
+    <param name="save_file" type="string"
+      value="$(find tf_republisher)/config/kinect_position.yaml"/>
+  <node/>
+  <node pkg="tf_republisher" type="static_tf_republisher.py"
+    name="kinect_ir_tf_broadcaster" output="screen" respawn="true">
+    <param name="source_frame" type="string" value="Base"/>
+    <param name="target_frame" type="string" value="kinect2_ir_optical_frame"/>
+    <param name="save_file" type="string"
+      value="$(find tf_republisher)/config/kinect_position.yaml"/>
+  <node/>
+  
+  <node pkg="tf_republisher" type="static_tf_republisher.py"
+    name="fisheye_tf_broadcaster" output="screen" respawn="true">
+    <param name="source_frame" type="string" value="Fisheye_Model"/>
+    <param name="target_frame" type="string" value="map"/>
+    <param name="save_file" type="string"
+      value="$(find tf_republisher)/config/fisheye_position.yaml"/>
+  <node/>
+</launch>

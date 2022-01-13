@@ -1,0 +1,22 @@
+<launch>
+  <node pkg="tf_republisher" type="tagslam_tf_republisher.py"
+    name="kinect_tf_broadcaster" output="screen">
+    <param name="tagslam_base_frame" type="string" value="tagslam_kinect"/>
+    <param name="tagslam_map_frame" type="string" value="map"/>
+  </node>
+  <node pkg="tf2_ros" type="static_transform_publisher"
+    name="kinect_rgb_tf_broadcaster"
+    args="0 0 0 0 0 0 1 tagslam_kinect kinect2_rgb_optical_frame" />
+  <node pkg="tf2_ros" type="static_transform_publisher"
+    name="kinect_ir_tf_broadcaster"
+    args="0 0 0 0 0 0 1 tagslam_kinect kinect2_ir_optical_frame" />
+
+  <node name="rqt_reconfigure_kinect" pkg="rqt_reconfigure" type="rqt_reconfigure"/>
+  <node pkg="tf_republisher" type="calibrate_tf.py"
+    name="kinect_tf_calibrator" output="screen">
+    <param name="source_frame" type="string" value="Base"/>
+    <param name="map_frame" type="string" value="map"/>
+    <param name="save_file" type="string"
+      value="$(find tf_republisher)/config/kinect_position.yaml"/>
+  </node>
+</launch>
