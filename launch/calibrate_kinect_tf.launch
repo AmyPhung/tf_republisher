@@ -1,7 +1,7 @@
 <launch>
   <node pkg="tf_republisher" type="tagslam_tf_republisher.py"
     name="kinect_tf_broadcaster" output="screen">
-    <param name="tagslam_base_frame" type="string" value="tagslam_kinect"/>
+    <param name="tagslam_base_frame" type="string" value="tagslam_base"/>
     <param name="tagslam_map_frame" type="string" value="map"/>
   </node>
   <node pkg="tf2_ros" type="static_transform_publisher"

@@ -34,5 +34,5 @@ class StaticTfRepublisher():
 
 
 if __name__ == '__main__':
-    tf_publisher = TagslamTfRepublisher()
+    tf_publisher = StaticTfRepublisher()
     tf_publisher.run()

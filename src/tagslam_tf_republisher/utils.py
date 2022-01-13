@@ -21,15 +21,18 @@ def save_tf(tf, filename):
 
 
 def load_tf(filename):
-    data = yaml.load(filename)
+    data = {}
+    with open(filename, 'r') as stream:
+        data=yaml.safe_load(stream)
+        
     tf = Transform()
-    data["translation"]["x"] = tf.translation.x
-    data["translation"]["x"] = tf.translation.y
-    data["translation"]["x"] = tf.translation.z
+    tf.translation.x = data["translation"]["x"]
+    tf.translation.y = data["translation"]["y"]
+    tf.translation.z = data["translation"]["z"]
 
-    data["rotation"]["x"] = tf.rotation.x
-    data["rotation"]["y"] = tf.rotation.y
-    data["rotation"]["z"] = tf.rotation.z
-    data["rotation"]["w"] = tf.rotation.w
+    tf.rotation.x = data["rotation"]["x"]
+    tf.rotation.y = data["rotation"]["y"]
+    tf.rotation.z = data["rotation"]["z"]
+    tf.rotation.w = data["rotation"]["w"]
 
     return tf
