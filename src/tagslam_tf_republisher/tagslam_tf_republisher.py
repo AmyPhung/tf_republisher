@@ -55,7 +55,8 @@ class TagslamTfRepublisher():
                                                     rospy.Time())
                 self.tf_msg = t.transform
 
-            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException):
+            except (tf2_ros.LookupException, tf2_ros.ConnectivityException, tf2_ros.ExtrapolationException) as e:
+                print(e)
                 rospy.logwarn_throttle(3, "Error in tagslam tf republisher - is tagslam running with the base tags visible?")
 
             output_tf = TransformStamped()
